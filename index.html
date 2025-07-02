@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML to Markdown Bookmarklet - GitHub Ready</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .bookmarklet-section {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .bookmarklet-title {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bookmarklet-link {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            cursor: move;
+        }
+
+        .bookmarklet-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .instructions {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .instructions h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            color: #333;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin: 15px 0;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .github-section {
+            background: #f6f8fa;
+            border: 2px solid #d0d7de;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .copy-btn {
+            background: #0969da;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .copy-btn:hover {
+            background: #0860ca;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML → Markdown</h1>
+        <p class="subtitle">Bookmarklet для швидкої конвертації веб-сторінок</p>
+
+        <div class="bookmarklet-section">
+            <div class="bookmarklet-title">
+                <span>🔖</span> Bookmarklet для встановлення
+            </div>
+            
+            <p style="margin-bottom: 15px; color: #666;">
+                Перетягніть цю кнопку на панель закладок вашого браузера:
+            </p>
+            
+            <a href="javascript:(function(){const overlay=document.createElement('div');overlay.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px);';const container=document.createElement('div');container.style.cssText='background:white;border-radius:20px;padding:40px;max-width:900px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px rgba(0,0,0,0.4);position:relative;';const closeBtn=document.createElement('button');closeBtn.innerHTML='❌';closeBtn.style.cssText='position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;padding:5px;';closeBtn.onclick=()=>document.body.removeChild(overlay);const title=document.createElement('h2');title.innerHTML='HTML → Markdown Converter';title.style.cssText='text-align:center;color:#333;margin-bottom:20px;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;';const resultArea=document.createElement('textarea');resultArea.style.cssText='width:100%;height:400px;padding:20px;border:2px solid #e0e0e0;border-radius:12px;font-family:Courier New,monospace;font-size:14px;line-height:1.6;resize:vertical;margin:20px 0;';resultArea.readOnly=true;resultArea.placeholder='Конвертація в процесі...';const copyBtn=document.createElement('button');copyBtn.innerHTML='📋 Копіювати Markdown';copyBtn.style.cssText='background:linear-gradient(135deg,#28a745,#20c997);color:white;border:none;padding:15px 25px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin:10px;';const downloadBtn=document.createElement('button');downloadBtn.innerHTML='💾 Завантажити файл';downloadBtn.style.cssText='background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;padding:15px 25px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin:10px;';const statsDiv=document.createElement('div');statsDiv.style.cssText='color:#666;font-size:14px;margin:10px 0;';container.appendChild(closeBtn);container.appendChild(title);container.appendChild(resultArea);container.appendChild(statsDiv);container.appendChild(copyBtn);container.appendChild(downloadBtn);overlay.appendChild(container);document.body.appendChild(overlay);function logDiagnostic(message){console.log(message);}function cleanHTML(doc){logDiagnostic('🧹 Починаємо очищення HTML...');const elementsToRemove=['style','script','link','meta','noscript','iframe','object','embed','audio','video','canvas','svg','head'];let removedCount=0;elementsToRemove.forEach(tagName=>{const elements=doc.querySelectorAll(tagName);elements.forEach(element=>{element.remove();removedCount++;});});logDiagnostic(`🗑️ Видалено ${removedCount} технічних елементів`);const allElements=doc.querySelectorAll('*');let cleanedAttributes=0;allElements.forEach(element=>{const attributesToRemove=['style','class','id','onclick','onload','onmouseover','onmouseout','onfocus','onblur','onchange','onsubmit','data-*'];attributesToRemove.forEach(attr=>{if(attr==='data-*'){const attributes=Array.from(element.attributes);attributes.forEach(attribute=>{if(attribute.name.startsWith('data-')){element.removeAttribute(attribute.name);cleanedAttributes++;}});}else if(element.hasAttribute(attr)){element.removeAttribute(attr);cleanedAttributes++;}});});logDiagnostic(`🧽 Очищено ${cleanedAttributes} атрибутів`);const allElementsAfterClean=doc.querySelectorAll('*');let removedEmptyElements=0;allElementsAfterClean.forEach(element=>{const tagName=element.tagName.toLowerCase();const allowedEmptyElements=['br','hr','img','input','area','base','col','embed','source','track','wbr'];if(!allowedEmptyElements.includes(tagName)&&!element.textContent.trim()&&element.children.length===0){element.remove();removedEmptyElements++;}});logDiagnostic(`🗑️ Видалено ${removedEmptyElements} порожніх елементів`);logDiagnostic('✅ Очищення HTML завершено');return doc;}function findBestContent(doc){logDiagnostic('🔍 Шукаємо H1 для початку конвертації...');const h1=doc.querySelector('h1');if(!h1){logDiagnostic('❌ H1 не знайдено, використовуємо fallback');return findFallbackContent(doc);}logDiagnostic(`✅ Знайдено H1: \"${h1.textContent.trim()}\"`);const container=document.createElement('div');container.appendChild(h1.cloneNode(true));let currentElement=h1;while(currentElement.nextElementSibling){currentElement=currentElement.nextElementSibling;container.appendChild(currentElement.cloneNode(true));logDiagnostic(`➕ Додано елемент після H1: ${currentElement.tagName}`);}let parentContainer=h1.parentElement;if(parentContainer&&parentContainer!==doc.body){let nextContainer=parentContainer;while(nextContainer.nextElementSibling){nextContainer=nextContainer.nextElementSibling;if(nextContainer.textContent.trim().length>50){container.appendChild(nextContainer.cloneNode(true));logDiagnostic(`➕ Додано наступний контейнер: ${nextContainer.tagName}`);}}}logDiagnostic(`✅ Створено контент починаючи з H1: ${container.textContent.length} символів`);return container;}function findFallbackContent(doc){const contentSelectors=['article','main','.content','.post-content','.entry-content','#content'];let contentElement=null;let maxTextLength=0;for(const selector of contentSelectors){const elements=doc.querySelectorAll(selector);elements.forEach(element=>{const textLength=element.textContent.trim().length;logDiagnostic(`🔍 Fallback перевірка ${selector}: ${textLength} символів`);if(textLength>maxTextLength&&textLength>1000){maxTextLength=textLength;contentElement=element;}});}if(contentElement){logDiagnostic(`✅ Fallback вибрано: ${maxTextLength} символів`);return contentElement;}logDiagnostic('🔄 Останній fallback: використовуємо body');return doc.body;}function convertElement(element){let markdown='';let processedNodes=0;logDiagnostic(`🔄 convertElement: ${element.childNodes.length} дочірніх вузлів`);for(let i=0;i<element.childNodes.length;i++){const child=element.childNodes[i];if(child.nodeType===Node.TEXT_NODE){const text=child.textContent.replace(/\s+/g,' ').trim();if(text){markdown+=text+' ';processedNodes++;}}else if(child.nodeType===Node.ELEMENT_NODE){const elementResult=convertHTMLElement(child);markdown+=elementResult;if(elementResult)processedNodes++;}}logDiagnostic(`✅ convertElement завершено: ${processedNodes} вузлів, ${markdown.length} символів`);return markdown;}function convertHTMLElement(element){const tagName=element.tagName.toLowerCase();const text=element.textContent.trim();if(!text&&!['img','hr','br','table'].includes(tagName))return '';switch(tagName){case 'h1':return `\n# ${text}\n\n`;case 'h2':return `\n## ${text}\n\n`;case 'h3':return `\n### ${text}\n\n`;case 'h4':return `\n#### ${text}\n\n`;case 'h5':return `\n##### ${text}\n\n`;case 'h6':return `\n###### ${text}\n\n`;case 'p':return `\n${convertElement(element)}\n\n`;case 'strong':case 'b':return `**${text}**`;case 'em':case 'i':return `*${text}*`;case 'code':return `\`${text}\``;case 'pre':const codeElement=element.querySelector('code');const codeText=codeElement?codeElement.textContent:text;return `\n\`\`\`\n${codeText}\n\`\`\`\n\n`;case 'a':const href=element.getAttribute('href');if(!href||href.startsWith('#')||href===''||href.startsWith('javascript:')||href.includes('#')){return text;}return `[${text}](${href})`;case 'img':const src=element.getAttribute('src');const alt=element.getAttribute('alt')||'зображення';return src?`![${alt}](${src})`:'';case 'ul':return convertList(element,false);case 'ol':return convertList(element,true);case 'li':return convertElement(element);case 'blockquote':return `\n> ${convertElement(element)}\n\n`;case 'table':return convertTable(element);case 'br':return '\n';case 'hr':return '\n---\n\n';default:return convertElement(element);}}function convertList(listElement,isOrdered){let markdown='\n';const items=listElement.querySelectorAll(':scope > li');items.forEach((item,index)=>{const prefix=isOrdered?`${index+1}. `:'- ';const content=convertElement(item).trim();markdown+=`${prefix}${content}\n`;});return markdown+'\n';}function convertTable(table){let markdown='\n';const rows=table.querySelectorAll('tr');if(rows.length===0){logDiagnostic('⚠️ Таблиця без рядків');return '';}logDiagnostic(`📊 Конвертуємо таблицю: ${rows.length} рядків`);rows.forEach((row,rowIndex)=>{const cells=row.querySelectorAll('td, th');if(cells.length===0)return;const cellContents=Array.from(cells).map(cell=>{let text=cell.textContent.trim();text=text.replace(/\s+/g,' ');text=text.replace(/\|/g,'\\|');if(text.length>50){text=text.substring(0,47)+'...';}return text||' ';});markdown+=`| ${cellContents.join(' | ')} |\n`;if(rowIndex===0){const separator='|'+' --- |'.repeat(cells.length)+'\n';markdown+=separator;logDiagnostic(`📋 Додано роздільник: ${cells.length} колонок`);}});markdown+='\n';logDiagnostic(`✅ Таблиця конвертована успішно`);return markdown;}function htmlToMarkdown(doc){logDiagnostic('🔍 htmlToMarkdown ПОЧАТОК');let markdown='';let contentElement=findBestContent(doc);if(!contentElement){logDiagnostic('❌ Не знайдено жодного контенту');return '';}logDiagnostic('🔄 Початок конвертації елементів...');const convertedContent=convertElement(contentElement);logDiagnostic(`📏 Після convertElement, довжина: ${convertedContent.length}`);markdown+=convertedContent;const trimmedMarkdown=markdown.trim();logDiagnostic(`🏁 htmlToMarkdown ЗАВЕРШЕННЯ: ${trimmedMarkdown.length} символів`);return trimmedMarkdown;}function convertCurrentPage(){try{logDiagnostic('🚀 Початок конвертації поточної сторінки...');const parser=new DOMParser();let doc=parser.parseFromString(document.documentElement.outerHTML,'text/html');logDiagnostic('🔄 HTML успішно спарсено');if(!doc||!doc.body){throw new Error('Не вдалося розпарсити HTML');}doc=cleanHTML(doc);const markdown=htmlToMarkdown(doc);if(!markdown||markdown.trim().length===0){throw new Error('Результат конвертації порожній');}logDiagnostic(`✅ Конвертація завершена: ${markdown.length} символів`);const charCount=markdown.length;const wordCount=markdown.trim().split(/\s+/).filter(word=>word.length>0).length;const lineCount=markdown.split('\n').length;statsDiv.innerHTML=`<strong>Статистика:</strong> ${charCount.toLocaleString()} символів, ${wordCount.toLocaleString()} слів, ${lineCount.toLocaleString()} рядків`;resultArea.value=markdown;resultArea.placeholder='';copyBtn.onclick=()=>{navigator.clipboard.writeText(markdown).then(()=>{copyBtn.innerHTML='✅ Скопійовано!';setTimeout(()=>copyBtn.innerHTML='📋 Копіювати Markdown',2000);}).catch(()=>{const textarea=document.createElement('textarea');textarea.value=markdown;document.body.appendChild(textarea);textarea.select();document.execCommand('copy');document.body.removeChild(textarea);copyBtn.innerHTML='✅ Скопійовано!';setTimeout(()=>copyBtn.innerHTML='📋 Копіювати Markdown',2000);});};downloadBtn.onclick=()=>{const now=new Date();const timestamp=now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');const fileName=`markdown_${timestamp}.md`;const blob=new Blob([markdown],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=fileName;a.click();URL.revokeObjectURL(url);};}catch(error){logDiagnostic(`❌ Помилка: ${error.message}`);statsDiv.innerHTML=`<span style="color:red;">❌ Помилка: ${error.message}</span>`;resultArea.value='';resultArea.placeholder='Сталася помилка при конвертації...';}}convertCurrentPage();})()**`;case 'em':case 'i':return `*${text}*`;case 'code':return `\`${text}\``;case 'pre':const codeElement=element.querySelector('code');const codeText=codeElement?codeElement.textContent:text;return `\n\`\`\`\n${codeText}\n\`\`\`\n\n`;case 'a':const href=element.getAttribute('href');if(!href||href.startsWith('#')||href===''||href.startsWith('javascript:')||href.includes('#')){return text;}return `[${text}](${href})`;case 'img':const src=element.getAttribute('src');const alt=element.getAttribute('alt')||'зображення';return src?`![${alt}](${src})`:'';case 'ul':return convertList(element,false);case 'ol':return convertList(element,true);case 'li':return convertElement(element);case 'blockquote':return `\n> ${convertElement(element)}\n\n`;case 'table':return convertTable(element);case 'br':return '\n';case 'hr':return '\n---\n\n';default:return convertElement(element);}}function convertList(listElement,isOrdered){let markdown='\n';const items=listElement.querySelectorAll(':scope > li');items.forEach((item,index)=>{const prefix=isOrdered?`${index+1}. `:'- ';const content=convertElement(item).trim();markdown+=`${prefix}${content}\n`;});return markdown+'\n';}function convertTable(table){let markdown='\n';const rows=table.querySelectorAll('tr');if(rows.length===0){logDiagnostic('⚠️ Таблиця без рядків');return '';}logDiagnostic(`📊 Конвертуємо таблицю: ${rows.length} рядків`);rows.forEach((row,rowIndex)=>{const cells=row.querySelectorAll('td, th');if(cells.length===0)return;const cellContents=Array.from(cells).map(cell=>{let text=cell.textContent.trim();text=text.replace(/\s+/g,' ');text=text.replace(/\|/g,'\\|');if(text.length>50){text=text.substring(0,47)+'...';}return text||' ';});markdown+=`| ${cellContents.join(' | ')} |\n`;if(rowIndex===0){const separator='|'+' --- |'.repeat(cells.length)+'\n';markdown+=separator;logDiagnostic(`📋 Додано роздільник: ${cells.length} колонок`);}});markdown+='\n';logDiagnostic(`✅ Таблиця конвертована успішно`);return markdown;}function htmlToMarkdown(doc){logDiagnostic('🔍 htmlToMarkdown ПОЧАТОК');let markdown='';let contentElement=findBestContent(doc);if(!contentElement){logDiagnostic('❌ Не знайдено жодного контенту');return '';}logDiagnostic('🔄 Початок конвертації елементів...');const convertedContent=convertElement(contentElement);logDiagnostic(`📏 Після convertElement, довжина: ${convertedContent.length}`);markdown+=convertedContent;const trimmedMarkdown=markdown.trim();logDiagnostic(`🏁 htmlToMarkdown ЗАВЕРШЕННЯ: ${trimmedMarkdown.length} символів`);return trimmedMarkdown;}function convertCurrentPage(){try{logDiagnostic('🚀 Початок конвертації поточної сторінки...');const parser=new DOMParser();let doc=parser.parseFromString(document.documentElement.outerHTML,'text/html');logDiagnostic('🔄 HTML успішно спарсено');if(!doc||!doc.body){throw new Error('Не вдалося розпарсити HTML');}doc=cleanHTML(doc);const markdown=htmlToMarkdown(doc);if(!markdown||markdown.trim().length===0){throw new Error('Результат конвертації порожній');}logDiagnostic(`✅ Конвертація завершена: ${markdown.length} символів`);const charCount=markdown.length;const wordCount=markdown.trim().split(/\s+/).filter(word=>word.length>0).length;const lineCount=markdown.split('\n').length;statsDiv.innerHTML=`<strong>Статистика:</strong> ${charCount.toLocaleString()} символів, ${wordCount.toLocaleString()} слів, ${lineCount.toLocaleString()} рядків`;resultArea.value=markdown;resultArea.placeholder='';copyBtn.onclick=()=>{navigator.clipboard.writeText(markdown).then(()=>{copyBtn.innerHTML='✅ Скопійовано!';setTimeout(()=>copyBtn.innerHTML='📋 Копіювати Markdown',2000);}).catch(()=>{const textarea=document.createElement('textarea');textarea.value=markdown;document.body.appendChild(textarea);textarea.select();document.execCommand('copy');document.body.removeChild(textarea);copyBtn.innerHTML='✅ Скопійовано!';setTimeout(()=>copyBtn.innerHTML='📋 Копіювати Markdown',2000);});};downloadBtn.onclick=()=>{const now=new Date();const timestamp=now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');const fileName=`markdown_${timestamp}.md`;const blob=new Blob([markdown],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=fileName;a.click();URL.revokeObjectURL(url);};}catch(error){logDiagnostic(`❌ Помилка: ${error.message}`);statsDiv.innerHTML=`<span style=\"color:red;\">❌ Помилка: ${error.message}</span>`;resultArea.value='';resultArea.placeholder='Сталася помилка при конвертації...';}}convertCurrentPage();})()" 
+                  class="bookmarklet-link" 
+                  title="Перетягніть на панель закладок">
+                🔖 HTML → Markdown
+            </a>
+
+            <div class="instructions">
+                <h3>📖 Інструкція по встановленню:</h3>
+                <ol>
+                    <li><strong>Показати панель закладок:</strong> Натисніть Ctrl+Shift+B (Chrome/Edge) або Cmd+Shift+B (Safari)</li>
+                    <li><strong>Перетягнути:</strong> Візьміть кнопку "🔖 HTML → Markdown" вище і перетягніть на панель закладок</li>
+                    <li><strong>Використання:</strong> На будь-якій веб-сторінці натисніть на закладку щоб конвертувати HTML в Markdown</li>
+                </ol>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Важливо:</strong> Bookmarklet працює тільки на звичайних веб-сторінках. Не працює на системних сторінках браузера (chrome://, about:, тощо).
+            </div>
+        </div>
+
+        <div class="github-section">
+            <div class="bookmarklet-title">
+                <span>📂</span> Код для GitHub
+            </div>
+            
+            <p style="margin-bottom: 15px; color: #666;">
+                Мінімізований JavaScript код для розміщення в README.md:
+            </p>
+
+            <button class="copy-btn" onclick="copyGitHubCode()">📋 Копіювати код для GitHub</button>
+
+            <div class="code-block" id="github-code">javascript:(function(){const overlay=document.createElement('div');overlay.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px);';const container=document.createElement('div');container.style.cssText='background:white;border-radius:20px;padding:40px;max-width:900px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px rgba(0,0,0,0.4);position:relative;';const closeBtn=document.createElement('button');closeBtn.innerHTML='❌';closeBtn.style.cssText='position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;padding:5px;';closeBtn.onclick=()=>document.body.removeChild(overlay);const title=document.createElement('h2');title.innerHTML='HTML → Markdown Converter';title.style.cssText='text-align:center;color:#333;margin-bottom:20px;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;';const resultArea=document.createElement('textarea');resultArea.style.cssText='width:100%;height:400px;padding:20px;border:2px solid #e0e0e0;border-radius:12px;font-family:Courier New,monospace;font-size:14px;line-height:1.6;resize:vertical;margin:20px 0;';resultArea.readOnly=true;resultArea.placeholder='Конвертація в процесі...';const copyBtn=document.createElement('button');copyBtn.innerHTML='📋 Копіювати Markdown';copyBtn.style.cssText='background:linear-gradient(135deg,#28a745,#20c997);color:white;border:none;padding:15px 25px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin:10px;';const downloadBtn=document.createElement('button');downloadBtn.innerHTML='💾 Завантажити файл';downloadBtn.style.cssText='background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;padding:15px 25px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin:10px;';const statsDiv=document.createElement('div');statsDiv.style.cssText='color:#666;font-size:14px;margin:10px 0;';container.appendChild(closeBtn);container.appendChild(title);container.appendChild(resultArea);container.appendChild(statsDiv);container.appendChild(copyBtn);container.appendChild(downloadBtn);overlay.appendChild(container);document.body.appendChild(overlay);function logDiagnostic(message){console.log(message);}function cleanHTML(doc){logDiagnostic('🧹 Починаємо очищення HTML...');const elementsToRemove=['style','script','link','meta','noscript','iframe','object','embed','audio','video','canvas','svg','head'];let removedCount=0;elementsToRemove.forEach(tagName=>{const elements=doc.querySelectorAll(tagName);elements.forEach(element=>{element.remove();removedCount++;});});logDiagnostic(`🗑️ Видалено ${removedCount} технічних елементів`);const allElements=doc.querySelectorAll('*');let cleanedAttributes=0;allElements.forEach(element=>{const attributesToRemove=['style','class','id','onclick','onload','onmouseover','onmouseout','onfocus','onblur','onchange','onsubmit','data-*'];attributesToRemove.forEach(attr=>{if(attr==='data-*'){const attributes=Array.from(element.attributes);attributes.forEach(attribute=>{if(attribute.name.startsWith('data-')){element.removeAttribute(attribute.name);cleanedAttributes++;}});}else if(element.hasAttribute(attr)){element.removeAttribute(attr);cleanedAttributes++;}});});logDiagnostic(`🧽 Очищено ${cleanedAttributes} атрибутів`);const allElementsAfterClean=doc.querySelectorAll('*');let removedEmptyElements=0;allElementsAfterClean.forEach(element=>{const tagName=element.tagName.toLowerCase();const allowedEmptyElements=['br','hr','img','input','area','base','col','embed','source','track','wbr'];if(!allowedEmptyElements.includes(tagName)&&!element.textContent.trim()&&element.children.length===0){element.remove();removedEmptyElements++;}});logDiagnostic(`🗑️ Видалено ${removedEmptyElements} порожніх елементів`);logDiagnostic('✅ Очищення HTML завершено');return doc;}function findBestContent(doc){logDiagnostic('🔍 Шукаємо H1 для початку конвертації...');const h1=doc.querySelector('h1');if(!h1){logDiagnostic('❌ H1 не знайдено, використовуємо fallback');return findFallbackContent(doc);}logDiagnostic(`✅ Знайдено H1: "${h1.textContent.trim()}"`);const container=document.createElement('div');container.appendChild(h1.cloneNode(true));let currentElement=h1;while(currentElement.nextElementSibling){currentElement=currentElement.nextElementSibling;container.appendChild(currentElement.cloneNode(true));logDiagnostic(`➕ Додано елемент після H1: ${currentElement.tagName}`);}let parentContainer=h1.parentElement;if(parentContainer&&parentContainer!==doc.body){let nextContainer=parentContainer;while(nextContainer.nextElementSibling){nextContainer=nextContainer.nextElementSibling;if(nextContainer.textContent.trim().length>50){container.appendChild(nextContainer.cloneNode(true));logDiagnostic(`➕ Додано наступний контейнер: ${nextContainer.tagName}`);}}}logDiagnostic(`✅ Створено контент починаючи з H1: ${container.textContent.length} символів`);return container;}function findFallbackContent(doc){const contentSelectors=['article','main','.content','.post-content','.entry-content','#content'];let contentElement=null;let maxTextLength=0;for(const selector of contentSelectors){const elements=doc.querySelectorAll(selector);elements.forEach(element=>{const textLength=element.textContent.trim().length;logDiagnostic(`🔍 Fallback перевірка ${selector}: ${textLength} символів`);if(textLength>maxTextLength&&textLength>1000){maxTextLength=textLength;contentElement=element;}});}if(contentElement){logDiagnostic(`✅ Fallback вибрано: ${maxTextLength} символів`);return contentElement;}logDiagnostic('🔄 Останній fallback: використовуємо body');return doc.body;}function convertElement(element){let markdown='';let processedNodes=0;logDiagnostic(`🔄 convertElement: ${element.childNodes.length} дочірніх вузлів`);for(let i=0;i<element.childNodes.length;i++){const child=element.childNodes[i];if(child.nodeType===Node.TEXT_NODE){const text=child.textContent.replace(/\s+/g,' ').trim();if(text){markdown+=text+' ';processedNodes++;}}else if(child.nodeType===Node.ELEMENT_NODE){const elementResult=convertHTMLElement(child);markdown+=elementResult;if(elementResult)processedNodes++;}}logDiagnostic(`✅ convertElement завершено: ${processedNodes} вузлів, ${markdown.length} символів`);return markdown;}function convertHTMLElement(element){const tagName=element.tagName.toLowerCase();const text=element.textContent.trim();if(!text&&!['img','hr','br','table'].includes(tagName))return '';switch(tagName){case 'h1':return `\n# ${text}\n\n`;case 'h2':return `\n## ${text}\n\n`;case 'h3':return `\n### ${text}\n\n`;case 'h4':return `\n#### ${text}\n\n`;case 'h5':return `\n##### ${text}\n\n`;case 'h6':return `\n###### ${text}\n\n`;case 'p':return `\n${convertElement(element)}\n\n`;case 'strong':case 'b':return `**${text}
